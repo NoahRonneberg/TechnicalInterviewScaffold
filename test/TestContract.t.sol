@@ -3,7 +3,7 @@ pragma solidity ^0.8.24;
 
 import "forge-std/Test.sol";
 import "forge-std/console.sol";
-import "../TestContract.sol";
+import "../src/TestContract.sol";
 
 contract TestContractTest is Test {
     Contract public testContract;
@@ -22,5 +22,10 @@ contract TestContractTest is Test {
         vm.prank(creatorAddress);
         testContract.addRecord(1, "hi");
         assertEq(testContract.getMessage(1), "hi");
+        vm.expectRevert();
+        testContract.addRecord(1, "yo");
+        testContract.addRecord(2,"yo");
+        assertEq(testContract.getMessage(1), "hi");
+        assertEq(testContract.getMessage(2), "yo");
     }
 }
