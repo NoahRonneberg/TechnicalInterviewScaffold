@@ -19,6 +19,6 @@ target/
 .env
 
 # Foundry outputs
-out
-cache
-broadcast
+\out
+\cache
+\broadcast
